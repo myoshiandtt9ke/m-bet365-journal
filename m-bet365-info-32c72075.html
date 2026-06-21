@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bet365 · 再次遇见 持续关注</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f4f5f9;
+      color: #1c1e26;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(135deg, #0b0e1a 0%, #1a1f2f 60%, #2a3145 100%);
+      color: #eaeef2;
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -20%;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(255, 196, 54, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.9rem;
+      color: #ffffff;
+    }
+
+    .hero h1 span {
+      color: #f0c15b;
+      font-weight: 500;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0.5rem auto 1.8rem;
+      font-size: 1.1rem;
+      color: #cdd3df;
+    }
+
+    .hero .meta-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(4px);
+      padding: 0.3rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #bfc9dc;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      letter-spacing: 0.02em;
+    }
+
+    /* 正文浅色区 + 卡片布局 */
+    .container {
+      max-width: 1100px;
+      margin: -1.8rem auto 0;
+      padding: 0 1.5rem 3.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 主视觉卡片（再次访问/收藏） */
+    .feature-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2.2rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.06);
+    }
+
+    .feature-card .tag {
+      display: inline-block;
+      background: #eef1fa;
+      color: #2b3b5c;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.2rem 1rem;
+      border-radius: 50px;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card h2 {
+      font-size: 1.8rem;
+      font-weight: 540;
+      color: #0e121f;
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-card p {
+      color: #2f3547;
+      max-width: 700px;
+      font-size: 1rem;
+    }
+
+    .feature-card a {
+      color: #c9781c;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .feature-card a:hover {
+      color: #a36218;
+      border-bottom-color: #c9781c;
+    }
+
+    /* 用途卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin: 2.5rem 0 2rem;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ebedf5;
+      transition: transform 0.2s ease, box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .info-card .icon-em {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 0.65rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.2rem;
+      font-weight: 520;
+      color: #171b2a;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card p {
+      font-size: 0.94rem;
+      color: #3a4053;
+      line-height: 1.5;
+    }
+
+    /* 适合人群 + 自然链接段落 */
+    .audience-section {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 2.2rem 2rem;
+      margin: 1.8rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ebedf5;
+    }
+
+    .audience-section h3 {
+      font-size: 1.45rem;
+      font-weight: 520;
+      color: #141a2b;
+      margin-bottom: 0.8rem;
+    }
+
+    .audience-section p {
+      color: #2e354b;
+      margin-bottom: 0.8rem;
+    }
+
+    .audience-section a {
+      color: #a96315;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .audience-section a:hover {
+      color: #7f4d12;
+      border-bottom-color: #a96315;
+    }
+
+    .audience-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.2rem;
+      margin: 1rem 0 0.2rem;
+    }
+
+    .audience-items span {
+      background: #f0f2fa;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #1e263e;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.6rem 2rem 1.8rem;
+      margin: 1.5rem 0 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ebedf5;
+    }
+
+    .faq-mini h4 {
+      font-size: 1.1rem;
+      font-weight: 510;
+      color: #12182b;
+      margin-bottom: 0.4rem;
+    }
+
+    .faq-mini p {
+      font-size: 0.97rem;
+      color: #3f465b;
+    }
+
+    .faq-mini a {
+      color: #b46f1b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+    }
+
+    .faq-mini a:hover {
+      border-bottom-color: #b46f1b;
+    }
+
+    /* 底部 */
+    .footer-note {
+      text-align: center;
+      margin-top: 2.8rem;
+      padding: 1rem 0 0.4rem;
+      font-size: 0.8rem;
+      color: #6c7183;
+      border-top: 1px solid #e0e3ed;
+    }
+
+    /* 响应式 */
+    @media (max-width: 860px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 0 1rem 2.5rem;
+      }
+
+      .feature-card {
+        padding: 1.6rem 1.4rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .audience-section {
+        padding: 1.4rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <h1>再次遇见 · <span>bet365</span></h1>
+    <p>收藏一个熟悉的角落，让关注成为习惯。每一次回来都自然顺手。</p>
+    <span class="meta-tag">✦ 持续更新的陪伴感</span>
+  </header>
+
+  <div class="container">
+
+    <!-- 主视觉：再次访问 & 收藏 -->
+    <div class="feature-card">
+      <span class="tag">📌 再次访问</span>
+      <h2>为什么值得你再次回来</h2>
+      <p>
+        有些页面你只是匆匆路过，有些你却会主动收藏。<a href="https://m-bet365.com">bet365</a>
+        就是那个让你愿意保留在书签里的名字。无论何时你打开它，熟悉的结构和流畅的体验都不会让你重新适应。
+        它不会频繁变动到你认不出来，而是以一种克制的节奏优化细节。
+      </p>
+    </div>
+
+    <!-- 用途卡片 三张 -->
+    <div class="card-grid">
+      <div class="info-card">
+        <span class="icon-em">📋</span>
+        <h3>快速回顾</h3>
+        <p>进入页面就能看到之前的标记与偏好，不需要反复设置。适合那些喜欢效率感的日常使用者。</p>
+      </div>
+      <div class="info-card">
+        <span class="icon-em">🔖</span>
+        <h3>收藏夹常驻</h3>
+        <p>把它放在浏览器的常用栏或者主页快捷方式，每次打开都像回到一个熟悉的休息站。</p>
+      </div>
+      <div class="info-card">
+        <span class="icon-em">🔄</span>
+        <h3>持续关注</h3>
+        <p>信息会自然更新，但核心氛围始终保持一致。不需要频繁适应新布局，把注意力留给内容本身。</p>
+      </div>
+    </div>
+
+    <!-- 适合人群 + 自然链接段落 -->
+    <div class="audience-section">
+      <h3>它适合这样的你</h3>
+      <p>
+        如果你习惯在空闲时浏览感兴趣的内容，或者希望有一个不会让你感到陌生的页面常驻在标签栏里，
+        <a href="https://m-bet365.com">bet365</a> 会是一个自然的选择。它没有过度复杂的层级，
+        也没有频繁刷新的突兀感。从收藏到再次打开，整个过程保持连贯。
+      </p>
+      <p>
+        有些人喜欢一次性探索，更多人则希望有一个可以反复回来、每次都不失手的地方。
+        这种稳定带来的安心感，也是很多用户持续关注的原因。
+      </p>
+      <div class="audience-items">
+        <span>日常浏览者</span>
+        <span>偏爱一致体验</span>
+        <span>不愿频繁适应新界面</span>
+        <span>喜欢收藏实用页面</span>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <h4>❓ 常见疑问 · 简答</h4>
+      <p>
+        <strong>Q：</strong> 页面会经常变动吗？<br>
+        <strong>A：</strong> 保持稳定的视觉核心是 <a href="https://m-bet365.com">bet365</a> 的出发点，
+        更新偏向细微优化，不会让老用户感到陌生。<br><br>
+        <strong>Q：</strong> 手机和电脑上体验一致吗？<br>
+        <strong>A：</strong> 响应式设计确保无论用哪种设备，布局和操作逻辑都自然流畅。
+      </p>
+    </div>
+
+    <div class="footer-note">
+      <span>始终如一 · 值得收藏</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
