@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>炸金花 · 日常札记与延伸阅读</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+      background: #f8f6f2;
+      color: #2d2a27;
+      line-height: 1.7;
+      padding: 0;
+    }
+
+    /* 深色头图 – 故事感开场 */
+    .hero {
+      background: linear-gradient(142deg, #1a2a2f 0%, #2b3b3f 100%);
+      color: #ece8e1;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3.2rem 1.5rem 2.8rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(transparent, #f8f6f2);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin: 0 0 0.6rem;
+      color: #f0e9de;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0.5rem auto 0;
+      opacity: 0.9;
+      font-weight: 350;
+    }
+
+    .hero .short-line {
+      font-style: italic;
+      font-size: 1.35rem;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(240, 233, 222, 0.2);
+      padding-top: 1.2rem;
+      max-width: 460px;
+    }
+
+    /* 浅色正文区 */
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0 1.8rem 3.2rem;
+    }
+
+    .content-card {
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+      padding: 2.2rem 2.5rem;
+      margin-top: -1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-card h2 {
+      font-size: 1.6rem;
+      font-weight: 420;
+      margin: 1.8rem 0 1rem;
+      color: #1f2e30;
+      border-bottom: 2px solid #ebdccd;
+      padding-bottom: 0.3rem;
+      display: inline-block;
+    }
+
+    .content-card h2:first-of-type {
+      margin-top: 0.4rem;
+    }
+
+    .content-card p {
+      margin: 1rem 0;
+    }
+
+    /* 特点列表 – 带边饰卡片 */
+    .trait-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 1.6rem 0 0.8rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .trait-list li {
+      flex: 1 1 180px;
+      background: #f9f5ef;
+      border-left: 5px solid #8b7a6b;
+      padding: 0.8rem 1rem 0.9rem 1.2rem;
+      border-radius: 0 16px 16px 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .trait-list li strong {
+      display: block;
+      font-weight: 550;
+      color: #2d3b3a;
+      margin-bottom: 0.25rem;
+      font-size: 1.05rem;
+    }
+
+    .trait-list li span {
+      font-size: 0.94rem;
+      color: #4f4a44;
+    }
+
+    /* FAQ 摘要风格 */
+    .faq-mini {
+      background: #f3efe9;
+      padding: 1.2rem 1.6rem;
+      border-radius: 24px;
+      margin: 1.8rem 0 0.4rem;
+    }
+
+    .faq-mini dt {
+      font-weight: 540;
+      color: #1f2e30;
+      margin: 1rem 0 0.2rem;
+      font-size: 1.02rem;
+    }
+
+    .faq-mini dt:first-child {
+      margin-top: 0.2rem;
+    }
+
+    .faq-mini dd {
+      margin: 0 0 0.6rem 0.6rem;
+      color: #3e3934;
+    }
+
+    /* 强调色链接 */
+    a {
+      color: #7a5e4b;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+      font-weight: 500;
+    }
+
+    a:hover {
+      color: #4d3c2f;
+      border-bottom-color: #ab8b72;
+    }
+
+    .inline-link {
+      border-bottom: 1px dotted #b29982;
+    }
+
+    .inline-link:hover {
+      border-bottom-style: solid;
+    }
+
+    /* 温和结尾 */
+    .gentle-close {
+      margin: 2rem 0 0.4rem;
+      padding: 1.2rem 0 0.2rem;
+      border-top: 1px solid #e3d9ce;
+      font-style: normal;
+      color: #4b433b;
+    }
+
+    .gentle-close p {
+      font-size: 0.98rem;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero .short-line { font-size: 1.1rem; }
+      .content-card { padding: 1.6rem 1.4rem; }
+      .trait-list li { flex: 1 1 100%; }
+      .container { padding: 0 1rem 2.4rem; }
+    }
+
+    @media (max-width: 420px) {
+      .hero { padding: 2.4rem 1rem 2rem; }
+      .hero h1 { font-size: 1.9rem; }
+      .faq-mini { padding: 1rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>翻牌·记</h1>
+    <p>午后、老友、一副牌，还有那些从指尖漏走的疑问。</p>
+    <div class="short-line">“有时候我们会翻很多次，只为确认那个最熟悉的规则。”</div>
+  </div>
+
+  <div class="container">
+    <div class="content-card">
+
+      <!-- 承接段落：日常查询与对照 -->
+      <h2>翻开牌面之前</h2>
+      <p>对很多人来说，棋牌角落里的那款游戏不只是输赢，更像是某种安静的习惯。周末午后，或者晚间休息前，几个人围着桌面，牌张落在木纹上的声音很轻。但总会遇到一个记不清的牌型大小、花色顺序——这时候，顺手查一下就成了再自然不过的事。</p>
+      <p>在浏览器里输入几个字，翻开对照表，瞄一眼同花、顺子、豹子的顺序，然后合上页面，回到牌局。这种短促又准确的查询，往往比记在脑子里更可靠。而从对照出发，慢慢也会注意到不同地区的叫法差异、牌局节奏的变化，以及那些约定俗成的隐形规则。</p>
+      
+      <!-- 特点列表：从对照延伸到细节 -->
+      <h2>延伸阅读中常遇到的几个侧面</h2>
+      <ul class="trait-list">
+        <li>
+          <strong>牌型速记</strong>
+          <span>豹子＞同花顺＞金刚＞葫芦＞同花…… 排位逻辑沿袭自传统，但各地民间玩法常有微调。</span>
+        </li>
+        <li>
+          <strong>花色与次序</strong>
+          <span>多数规则不区分花色大小，但少数翻牌玩法会指定黑桃为尊，需要额外留意。</span>
+        </li>
+        <li>
+          <strong>术语差异</strong>
+          <span>“喜钱”“闷牌”“喜报”——同一个动作在不同省份有不同叫法，延伸阅读时尤其有趣。</span>
+        </li>
+        <li>
+          <strong>历史碎片</strong>
+          <span>据传近代牌戏经口岸传入内地后，与本地玩法融合，逐渐形成了今天常见的样子。</span>
+        </li>
+      </ul>
+
+      <!-- FAQ 摘要：生活化场景 -->
+      <h2>几个常见的日常疑问</h2>
+      <dl class="faq-mini">
+        <dt>▎A2345 是顺子还是最小的顺？</dt>
+        <dd>在多数规则中，A2345 被认定为最小的顺子（A当作1），但也有规则视其为“轮环顺”，比普通顺子高半级。建议开局前约定清楚。</dd>
+        <dt>▎同花和顺子哪个大？</dt>
+        <dd>经典排列中，顺子大于同花。不过某些变体会调整顺序，尤其是当加入“235捉豹”等特殊规则时。</dd>
+        <dt>▎自己在家玩，有没有简便的记分方式？</dt>
+        <dd>可以用筹码或者豆子，每轮底注固定，赢家取走底池。如果要更随意，用硬币或花生都可以——重点是开心，不是精确。</dd>
+      </dl>
+
+      <!-- 自然嵌入链接的句子 -->
+      <p style="margin-top: 1.4rem;">如果想从头到尾翻一遍完整的牌型对照、典故和延伸说明，可以在浏览器里打开 <a href="https://official-goldenflowers.com" class="inline-link">炸金花</a> 的页面，那里的整理比任何临时搜索都要清晰。我个人偶尔也会在等人或者休息的间隙点进去，看看有没有新补充的注释和玩法比较。</p>
+
+      <!-- 温和结尾 -->
+      <div class="gentle-close">
+        <p>说到底，扑克牌和那些围绕它产生的查询、对照、讨论，都只是日常里一块安静的角落。规则可以反复确认，玩法可以慢慢调整，重要的是围坐的人，和翻牌时的那份闲适。下次组局之前，如果心里闪过一个模糊的牌型，不妨花一分钟翻翻页，然后安心落座。</p>
+        <p style="color: #655d54; margin-top: 0.8rem; font-size: 0.95rem;">—— 翻牌愉快，从容开局。</p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
